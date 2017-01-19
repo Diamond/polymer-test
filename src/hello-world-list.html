@@ -4,20 +4,40 @@
 <dom-module id="hello-world-list">
   <template>
     <style></style>
-    <add-person></add-person>
+    <add-person library="[[library]]"></add-person>
     <template is="dom-repeat" items="{{people}}">
       <hello-world person="{{item}}"></hello-world>
     </template>
   </template>
   <script>
-    Polymer({
+    let people = ['Jim', 'Sally', 'Bender'];
+    const addPerson = (me) => {
+      console.log("Adding", me, "to", people);
+      const newPeople = [...people, me];
+      console.log("Result:", people);
+      console.log("Obj:", obj);
+      obj.updatePeople(newPeople);
+    }
+    const obj = {
       is: 'hello-world-list',
       properties: {
         people: {
           type: Array,
-          value: () => ['Jim', 'Sally', 'Bender', 'Kung-Fu Slammer'],
+          value: function() {
+            return people;
+          },
+        },
+        library: {
+          type: Object,
+          value: {
+            addPerson: addPerson,
+          },
         },
       },
-    });
+      updatePeople: function(newPeople) {
+        this.people.value = newPeople;
+      }
+    };
+    Polymer(obj);
   </script>
 </dom-module>

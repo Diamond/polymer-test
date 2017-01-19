@@ -6,8 +6,8 @@
       <label>
         Person Name
       </label>
-      <input type="text" placeholder="Name"/>
-      <button onClick={{doSomething}}>
+      <input type="text" placeholder="Name" value="{{personName::input}}"/>
+      <button on-click="doSomething">
         Add Person
       </button>
     </div>
@@ -16,11 +16,12 @@
     Polymer({
       is: 'add-person',
       properties: {
-        addPerson: Object,
-        doSomething: {
-          type: Object,
-          value: () => alert('Hello World')),
-        }
+        library: { type: Object },
+        personName: { type: String, value: '' },
+      },
+      doSomething: function(e) {
+        this.library.addPerson(this.personName);
+        // console.log(`Hello: ${this.personName}`);
       },
     });
   </script>
