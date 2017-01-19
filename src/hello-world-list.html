@@ -1,0 +1,23 @@
+<link rel="import" href="./hello-world.html" />
+<link rel="import" href="./add-person.html" />
+
+<dom-module id="hello-world-list">
+  <template>
+    <style></style>
+    <add-person></add-person>
+    <template is="dom-repeat" items="{{people}}">
+      <hello-world person="{{item}}"></hello-world>
+    </template>
+  </template>
+  <script>
+    Polymer({
+      is: 'hello-world-list',
+      properties: {
+        people: {
+          type: Array,
+          value: () => ['Jim', 'Sally', 'Bender', 'Kung-Fu Slammer'],
+        },
+      },
+    });
+  </script>
+</dom-module>

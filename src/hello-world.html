@@ -1,0 +1,20 @@
+<dom-module id="hello-world">
+  <template>
+    <style>
+      h1 {
+        color: #f00;
+      }
+    </style>
+    <div>
+      <h1>Hello {{person}}!</h1>
+    </div>
+  </template>
+  <script>
+    Polymer({
+      is: 'hello-world',
+      properties: {
+        person: String,
+      },
+    });
+  </script>
+</dom-module>
