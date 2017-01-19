@@ -1,12 +1,15 @@
 <dom-module id="hello-world">
   <template>
     <style>
-      h1 {
-        color: #f00;
+      :host[completed] span {
+        text-decoration: line-through;
+        color: #ccc;
       }
     </style>
     <div>
-      <h1>Hello {{person}}!</h1>
+      <span>Hello {{person}}!</span>
+      <button on-click="toggleComplete">Completed</button>
+      <button on-click="removeMe">Delete</button>
     </div>
   </template>
   <script>
@@ -14,7 +17,18 @@
       is: 'hello-world',
       properties: {
         person: String,
+        completed: {
+          type: Boolean,
+          value: false,
+          reflectToAttribute: true
+        },
       },
+      removeMe: function() {
+        this.fire("remove", this.person);
+      },
+      toggleComplete: function() {
+        this.completed = !this.completed;
+      }
     });
   </script>
 </dom-module>

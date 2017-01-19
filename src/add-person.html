@@ -7,7 +7,7 @@
         Person Name
       </label>
       <input type="text" placeholder="Name" value="{{personName::input}}"/>
-      <button on-click="doSomething">
+      <button on-click="addPerson">
         Add Person
       </button>
     </div>
@@ -16,12 +16,11 @@
     Polymer({
       is: 'add-person',
       properties: {
-        library: { type: Object },
-        personName: { type: String, value: '' },
+        personName: String,
       },
-      doSomething: function(e) {
-        this.library.addPerson(this.personName);
-        // console.log(`Hello: ${this.personName}`);
+      addPerson: function() {
+        this.fire("add", this.personName);
+        this.personName = '';
       },
     });
   </script>

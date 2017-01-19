@@ -10,4 +10,5 @@
       <!-- Works -->
       <input type="text" value="{{propertyName::input}}" />
 
-  
+- Errors just result in a blank page, nothing in chrome dev tools
+- Passing functions down to children has to be done via events ONLY
