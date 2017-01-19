@@ -1,0 +1,14 @@
+{
+  "name": "tutorial-1",
+  "version": "1.0.0",
+  "description": "A Webcomponents example app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Brandon Richey <richeyb@gmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "webpack": "^1.14.0"
+  }
+}
