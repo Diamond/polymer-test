@@ -1,15 +1,22 @@
 <dom-module id="hello-world">
   <template>
     <style>
-      :host[completed] span {
-        text-decoration: line-through;
-        color: #ccc;
+      :host {
+        display: block;
+        border: 2px solid black;
+        text-align: center;
+        background: #f5f5f5;
+        color: #333;
+        margin: 20px;
+        padding: 20px;
       }
     </style>
     <div>
-      <span>Hello {{person}}!</span>
-      <button on-click="toggleComplete">Completed</button>
-      <button on-click="removeMe">Delete</button>
+      <span>{{greeting}} {{person}}!</span>
+      <br />
+      <button on-click="frenchify">Frenchify!</button>
+      <br />
+      <button on-click="removeMe">Remove Me!</button>
     </div>
   </template>
   <script>
@@ -17,18 +24,17 @@
       is: 'hello-world',
       properties: {
         person: String,
-        completed: {
-          type: Boolean,
-          value: false,
-          reflectToAttribute: true
+        greeting: {
+          type: String,
+          value: 'Hello',
         },
       },
       removeMe: function() {
         this.fire("remove", this.person);
       },
-      toggleComplete: function() {
-        this.completed = !this.completed;
-      }
+      frenchify: function() {
+        this.greeting = 'Bonjour';
+      },
     });
   </script>
 </dom-module>
