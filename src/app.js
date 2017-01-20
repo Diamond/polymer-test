@@ -1,4 +1,13 @@
-import './base.html';
-import './hello-world-list.html';
+import './components/base.html';
+import './components/hello-world-list.html';
+//import './app.css';
 
-console.log('Page Loaded');
+const render = (element, target) => {
+  document
+    .querySelector(target)
+    .appendChild(
+      document.createElement(element)
+    );
+};
+
+render('hello-world-list', '#App');

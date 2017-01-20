@@ -3,25 +3,44 @@
 
 <dom-module id="hello-world-list">
   <template>
-    <style></style>
+    <style>
+    :host {
+      margin: 20px;
+      padding: 20px;
+      border: 2px solid #00D8FF;
+      background: #DDEEFF;
+    }
+    </style>
     <add-person on-add="addPerson"></add-person>
+    <template is="dom-if" if="{{loading}}">
+      <div class="loading">Please wait! Loading...</div>
+    </template>
     <template is="dom-repeat" items="{{people}}">
       <hello-world person="{{item}}" on-remove="removePerson"></hello-world>
     </template>
   </template>
   <script>
-    const poly = Polymer({
+    import PeopleService from '../services/PeopleService';
+
+    Polymer({
       is: 'hello-world-list',
       properties: {
         people: { type: Array, value: [] },
+        loading: { type: Boolean, value: true },
         personName: String,
+      },
+      ready: function() {
+        PeopleService.index().then(data => {
+          this.people = data;
+          this.loading = false;
+        });
       },
       addPerson: function(event, person) {
         this.people = [...this.people, person];
       },
       removePerson: function(event, person) {
         this.people = this.people.filter(p => person !== p);
-      }
+      },
     });
   </script>
 </dom-module>
